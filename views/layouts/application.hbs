@@ -12,7 +12,7 @@
     <title>Micro Real time bloging</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/main.css" rel="stylesheet">
@@ -21,45 +21,15 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">be an Entrepreneur</a>
-        </div>
-        <!-- <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse --> -->
-      </div>
-    </nav>
-
+    {{>navbar}}
     <div class="container">
-
-      <div class="starter-template">
-        <h1>Be an Entrepreneur</h1>
-        <p class="lead">Sign up today and meet entrepreneur and discuss life changeing ideas</p>
-      </div>
-      <div class="col-md-8 col-md-offset-4">
-        <a href="/" class="btn btn-primary btn-lg">Signup</a>
-        <a href="/" class="btn btn-primary btn-lg">Signin</a>
-      </div>
-    </div><!-- /.container -->
-
-
+      {{{body}}}
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   </body>
 </html>

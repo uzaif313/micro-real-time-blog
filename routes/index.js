@@ -2,7 +2,8 @@ const router = require("express").Router();
 
 router.get("/",(req, res, next)=>{
   res.render("main/home")
-  // res.json({name:"uzaif",age:"24"})
+  // render admin layout 
+  // res.render("main/home",{layout:"admin"})
 })
 
 module.exports = router;
