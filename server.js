@@ -5,8 +5,15 @@ const mongoose = require('mongoose');
 const hbs = require("hbs");
 const expressHbs = require("express-handlebars");
 const routes = require("./routes")
+const env = require("./config/env.dev")
 const port = 8000;
 const app = express();
+
+mongoose.connect(env.database,function(err){
+  if(err) console.log(err);
+  console.log("Connected to Database :blush:")
+})
+
 app.engine('.hbs',expressHbs({defaultLayout:'application',extname:".hbs"}));
 
 app.set('view engine','hbs');
