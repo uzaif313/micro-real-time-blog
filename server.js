@@ -9,11 +9,13 @@ const env = require("./config/env.dev")
 const port = 8000;
 const app = express();
 
-mongoose.connect(env.database,function(err){
-  if(err) console.log(err);
+mongoose.Promise = global.Promise;
+
+const dbConnection = mongoose.connect(env.database,{useMongoClient:true})
+
+dbConnection.then(function(err){
   console.log("Connected to Database :blush:")
 })
-
 app.engine('.hbs',expressHbs({defaultLayout:'application',extname:".hbs"}));
 
 app.set('view engine','hbs');
