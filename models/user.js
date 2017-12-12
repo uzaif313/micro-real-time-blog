@@ -28,4 +28,11 @@ UserSchema.pre("save",function(next){
   }
 })
 
+UserSchema.methods.gravtar = function (size) {
+  if(!size) size = 200;
+  if(!this.email) return `https://gravtar.com/avatar/?s=${size}+&d=retro`;
+  let md5 = crypto.createHash("md5").update(this.email).digest('hex')
+  return `https://gravtar.com/avatar/${md5}+?s=${size}&d=retro`
+}
+
 module.exports = mongoose.model('User', UserSchema);
