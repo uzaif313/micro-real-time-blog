@@ -1,3 +1,4 @@
 module.exports ={
-  database:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  database: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  secret: "xx"
 }
