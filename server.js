@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const hbs = require("hbs");
 const expressHbs = require("express-handlebars");
 const routes = require("./routes")
+const session = require("express-session");
+const Store = require("connect-mongo")(session);
+const flash = require("express-flash")
 const env = require("./config/env.dev")
 const port = 8000;
 const app = express();
@@ -26,6 +29,15 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended:false}))
+
+app.use(session({
+  resave: true,
+  saveUnintialized: true,
+  secret: env.secret,
+  store: new Store({url:env.database, autoReconnect:true})
+}))
+
+app.use(flash())
 app.use(routes)
 
 app.listen(port,(err)=>{
