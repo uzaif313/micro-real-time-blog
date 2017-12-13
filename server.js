@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const hbs = require("hbs");
 const expressHbs = require("express-handlebars");
 const routes = require("./routes")
+const userRoutes = require("./routes/users")
 const session = require("express-session");
 const Store = require("connect-mongo")(session);
 const flash = require("express-flash")
@@ -39,6 +40,7 @@ app.use(session({
 
 app.use(flash())
 app.use(routes)
+app.use(userRoutes)
 
 app.listen(port,(err)=>{
   if(err){
