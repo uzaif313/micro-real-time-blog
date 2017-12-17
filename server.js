@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const hbs = require("hbs");
 const expressHbs = require("express-handlebars");
-const routes = require("./routes")
+const routes = require("./routes");
 const userRoutes = require("./routes/users")
 const session = require("express-session");
 const Store = require("connect-mongo")(session);
-const flash = require("express-flash")
-const env = require("./config/env.dev")
+const flash = require("express-flash");
+const env = require("./config/env.dev");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
 const port = 8000;
 const app = express();
 
@@ -41,6 +43,9 @@ app.use(session({
 app.use(flash())
 app.use(routes)
 app.use(userRoutes)
+app.use(cookieParser())
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.listen(port,(err)=>{
   if(err){
