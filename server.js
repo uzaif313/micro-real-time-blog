@@ -32,6 +32,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(cookieParser())
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(session({
   resave: true,
@@ -43,9 +46,6 @@ app.use(session({
 app.use(flash())
 app.use(routes)
 app.use(userRoutes)
-app.use(cookieParser())
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.listen(port,(err)=>{
   if(err){
