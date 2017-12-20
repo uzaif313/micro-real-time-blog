@@ -35,13 +35,19 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use(passport.session())
-
 app.use(session({
   resave: true,
   saveUnintialized: true,
   secret: env.secret,
   store: new Store({url:env.database, autoReconnect:true})
 }))
+
+app.use(function(req, res, next){
+  res.locals.user = req.user
+  next()
+  // console.log(user)
+})
+
 
 app.use(flash())
 app.use(routes)
