@@ -36,5 +36,10 @@ router.route("/login")
 		failurFlash:true
 	}))
 
+router.get("/logout",(req,res)=>{
+  console.log(req.user)
+  req.logout()
+  res.redirect("/")
+})
 
 module.exports = router;
