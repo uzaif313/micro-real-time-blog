@@ -32,15 +32,16 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended:false}))
-app.use(cookieParser())
-app.use(passport.initialize())
-app.use(passport.session())
 app.use(session({
   resave: true,
-  saveUnintialized: true,
+  saveUninitialized: true,
   secret: env.secret,
   store: new Store({url:env.database, autoReconnect:true})
 }))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(cookieParser())
+app.use(flash())
 
 app.use(function(req, res, next){
   res.locals.user = req.user
@@ -49,7 +50,6 @@ app.use(function(req, res, next){
 })
 
 
-app.use(flash())
 app.use(routes)
 app.use(userRoutes)
 
