@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user");
 router.get("/",(req, res, next)=>{
+  console.log(req)
   res.render("main/home")
   // render admin layout
   // res.render("main/home",{layout:"admin"})
