@@ -36,7 +36,7 @@ UserSchema.methods.gravtar = function (size) {
   return `https://gravtar.com/avatar/${md5}+?s=${size}&d=retro`
 }
 
-UserSchema.methods.authenticate = function(password){
+UserSchema.methods.user_authenticate = function(password){
   return bcrypt.compareSync(password,this.password)
 }
 

@@ -28,13 +28,18 @@ router.route("/login")
 .get((req, res, next)=>{
 	if(req.user) res.redirect("/")
 	res.render("user/sign_in",{message:req.flash("msg")})
-})
-.post(
-	passport.authenticate("local-login",{
-		successRedirect:"/",
-		failureRedirect:"/login",
-		failurFlash:true
-	}))
+}).post(passport.authenticate('local-login', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
+    }));
+
+// .post(
+// 	passport.authenticate("local-login",{
+// 		successRedirect:"/",
+// 		failureRedirect:"/login",
+// 		failurFlash:true
+// 	}))
 
 router.get("/logout",(req,res)=>{
   console.log(req.user)
