@@ -31,9 +31,9 @@ UserSchema.pre("save",function(next){
 
 UserSchema.methods.gravtar = function (size) {
   if(!size) size = 200;
-  if(!this.email) return `https://gravtar.com/avatar/?s=${size}+&d=retro`;
+  if(!this.email) return `https://gravatar.com/avatar/?s=${size}+&d=retro`;
   var md5 = crypto.createHash("md5").update(this.email).digest('hex')
-  return `https://gravtar.com/avatar/${md5}+?s=${size}&d=retro`
+  return `https://gravatar.com/avatar/${md5}+?s=${size}&d=retro`
 }
 
 UserSchema.methods.user_authenticate = function(password){
