@@ -14,11 +14,13 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const port = 8000;
 const app = express();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
 mongoose.Promise = global.Promise;
 
 const dbConnection = mongoose.connect(env.database,{useMongoClient:true})
-
+require("./socket/io")(io)
 dbConnection.then(function(err){
   console.log("Connected to Database :blush:")
 })
@@ -53,7 +55,7 @@ app.use(function(req, res, next){
 app.use(routes)
 app.use(userRoutes)
 
-app.listen(port,(err)=>{
+http.listen(port,(err)=>{
   if(err){
     console.log(err)
   }else{
