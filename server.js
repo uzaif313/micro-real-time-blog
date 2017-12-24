@@ -12,11 +12,12 @@ const flash = require("express-flash");
 const env = require("./config/env.dev");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const passportSocketIo = require("passport.socketio")
 const port = 8000;
 const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
-
+const sessionStore = new Store({url:env.database, autoReconnect:true})
 mongoose.Promise = global.Promise;
 
 const dbConnection = mongoose.connect(env.database,{useMongoClient:true})
@@ -38,12 +39,30 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: env.secret,
-  store: new Store({url:env.database, autoReconnect:true})
+  store: sessionStore
 }))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(cookieParser())
 app.use(flash())
+
+io.use(passportSocketIo.authorize({
+  cookieParser: cookieParser,
+  key: 'connect.sid',
+  secret: env.secret,
+  store: sessionStore,
+  success: onAuthorizeSuccess,
+  fail: onAuthorizeFail
+}));
+
+function onAuthorizeSuccess(data, accept){
+  console.log("Authorize Connection")
+  accept()
+}
+function onAuthorizeFail(data, message, err, accept){
+  console.log("Unauthorize Connection")
+  if(error) accept(new Error(message))
+}
 
 app.use(function(req, res, next){
   res.locals.user = req.user
