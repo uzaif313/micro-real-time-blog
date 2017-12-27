@@ -22,6 +22,18 @@ module.exports = function(io) {
               tweet.save(function(err){
                 cb(err,tweet)
               })
+            },
+            function(tweet,cb){
+              User.update(
+                {
+                  _id: user._id
+                },
+                {
+                  $push: { tweets:{tweet:tweet._id } },
+                },function(err,count){
+                  cb(err,count)
+                }
+              );
             }
           ]);
         }
