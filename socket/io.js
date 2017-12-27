@@ -15,6 +15,14 @@ module.exports = function(io) {
 
         function(cb){
           async.waterfall([
+            function(cb){
+              var tweet = new Tweet()
+              tweet.content = data.content;
+              tweet.owner = user._id,
+              tweet.save(function(err){
+                cb(err,tweet)
+              })
+            }
           ]);
         }
       ])
