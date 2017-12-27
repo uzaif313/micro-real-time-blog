@@ -12,6 +12,11 @@ module.exports = function(io) {
         function(cb){
           io.emit('inComingTweets', { data:user })
         },
+
+        function(cb){
+          async.waterfall([
+          ]);
+        }
       ])
     })
   });
