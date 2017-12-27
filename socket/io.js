@@ -1,3 +1,6 @@
+const async = require('async');
+const User  = require("../models/user")
+const Tweet  = require("../models/tweet")
 module.exports = function(io) {
   io.on('connection', function(socket) {
     console.log('Just connected');
@@ -5,7 +8,9 @@ module.exports = function(io) {
     console.log(user.name)
 
     socket.on('tweet', (data)=>{
-      console.log(data)
+      async.parallel([
+        
+      ])
     })
   });
 };
