@@ -6,7 +6,7 @@ $(function() {
 
   //  Broadcast tweet to all user via listing on inComingTweets listner
   socket.on("inComingTweets", function(data){
-    
+    $("#tweets").prepend(buildTweetTemplate(data))
   })
 
   /**
