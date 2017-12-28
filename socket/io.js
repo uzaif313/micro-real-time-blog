@@ -10,7 +10,7 @@ module.exports = function(io) {
     socket.on('tweet', (data)=>{
       async.parallel([
         function(cb){
-          io.emit('inComingTweets', { data:user })
+          io.emit('inComingTweets', { data,user })
         },
 
         function(cb){
